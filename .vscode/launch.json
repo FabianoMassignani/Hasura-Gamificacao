@@ -5,9 +5,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "dm_hasura_server",
+            "name": "run",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+            "program": "bin/server.dart"
         }
     ]
 }
