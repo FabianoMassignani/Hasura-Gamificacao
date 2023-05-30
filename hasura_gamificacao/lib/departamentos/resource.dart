@@ -1,6 +1,9 @@
 import 'package:shelf_modular/shelf_modular.dart';
 
 import 'api/get_all_departamentos.dart';
+import 'api/insert_departamentos.dart';
+import 'api/delete_departamentos.dart';
+import 'api/update_departamentos.dart';
 
 class DepartamentosResource extends Resource {
   @override
