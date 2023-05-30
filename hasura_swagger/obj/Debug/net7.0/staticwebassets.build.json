@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "XdvrurFN2SjTGhfaIZjv6a5CxMOuvzCa4XPyYRKW4XA=",
+  "Source": "hasura_swagger",
+  "BasePath": "_content/hasura_swagger",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

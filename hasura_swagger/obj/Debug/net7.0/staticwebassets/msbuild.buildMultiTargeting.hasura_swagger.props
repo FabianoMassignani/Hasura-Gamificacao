@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\hasura_swagger.props" />
+</Project>
