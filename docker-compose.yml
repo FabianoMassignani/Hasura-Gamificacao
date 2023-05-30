@@ -59,13 +59,5 @@ services:
       - postgres
       - graphql-engine
       - data-connector-agent
-#  hasura_swagger:
-#    container_name: hasura_swagger
-#    build: ./hasura_swagger
-#    restart: always
-#    ports:
-#      - 8443:80
-#    depends_on:
-#      - hasura_gamificacao
 volumes:
   db_data:
