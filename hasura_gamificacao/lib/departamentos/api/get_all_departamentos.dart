@@ -22,3 +22,60 @@ Future<Response> getAllDepartamentos(
 
   return Response.ok(jsonEncode(hasuraResponse['data']));
 }
+
+Future<Response> insertDepartamento(
+  Request request,
+  Injector injector,
+  ModularArguments arguments,
+) async {
+  final hasuraConnect = injector.get<HasuraConnect>();
+
+  var hasuraResponse = await hasuraConnect.query('''
+      query GetAllDepartamentos {
+        departamentos {
+          departamentoID
+          nome
+        }
+      }
+      ''');
+
+  return Response.ok(jsonEncode(hasuraResponse['data']));
+}
+
+Future<Response> updateDepartamento(
+  Request request,
+  Injector injector,
+  ModularArguments arguments,
+) async {
+  final hasuraConnect = injector.get<HasuraConnect>();
+
+  var hasuraResponse = await hasuraConnect.query('''
+      query GetAllDepartamentos {
+        departamentos {
+          departamentoID
+          nome
+        }
+      }
+      ''');
+
+  return Response.ok(jsonEncode(hasuraResponse['data']));
+}
+
+Future<Response> deleteDepartamento(
+  Request request,
+  Injector injector,
+  ModularArguments arguments,
+) async {
+  final hasuraConnect = injector.get<HasuraConnect>();
+
+  var hasuraResponse = await hasuraConnect.query('''
+      query GetAllDepartamentos {
+        departamentos {
+          departamentoID
+          nome
+        }
+      }
+      ''');
+
+  return Response.ok(jsonEncode(hasuraResponse['data']));
+}
