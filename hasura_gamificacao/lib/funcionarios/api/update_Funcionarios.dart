@@ -4,7 +4,7 @@ import 'package:hasura_connect/hasura_connect.dart' hide Request, Response;
 import 'package:shelf/shelf.dart';
 import 'package:shelf_modular/shelf_modular.dart';
 
-Future<Response> getAllFuncionarios(
+Future<Response> updateFuncionarios(
   Request request,
   Injector injector,
   ModularArguments arguments,
