@@ -16,7 +16,9 @@ Future<Response> getAllFuncionarios(
         funcionarios {
           funcionarioID
           nome
-          descricao
+          sobrenome
+          endereco
+          telefone
         }
       }
       ''');

@@ -11,14 +11,22 @@ Future<Response> updateDepartamento(
 ) async {
   final hasuraConnect = injector.get<HasuraConnect>();
 
-  var hasuraResponse = await hasuraConnect.query('''
-      query GetAllDepartamentos {
-        departamentos {
-          departamentoID
-          nome
+  final departamentoID =
+      int.parse(request.url.queryParameters['departamentoID'] ?? '');
+  final nome = request.url.queryParameters['nome'] ?? '';
+  final descricao = request.url.queryParameters['descricao'] ?? '';
+
+  var hasuraResponse = await hasuraConnect.mutation('''
+      mutation UpdateDepartamento(\$departamentoID: Int!, \$nome: String!, \$descricao: String!) {
+        update_departamentos(where: { departamentoID: {_eq: \$departamentoID} }, _set: { nome: \$nome, descricao: \$descricao}) {
+          affected_rows
         }
       }
-      ''');
+      ''', variables: {
+    'departamentoID': departamentoID,
+    'nome': nome,
+    'descricao': descricao,
+  });
 
   return Response.ok(jsonEncode(hasuraResponse['data']));
 }

@@ -16,6 +16,7 @@ Future<Response> getAllDepartamentos(
         departamentos {
           departamentoID
           nome
+          descricao
         }
       }
       ''');

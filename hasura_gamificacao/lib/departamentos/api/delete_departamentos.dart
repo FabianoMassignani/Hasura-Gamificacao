@@ -11,14 +11,16 @@ Future<Response> deleteDepartamento(
 ) async {
   final hasuraConnect = injector.get<HasuraConnect>();
 
-  var hasuraResponse = await hasuraConnect.query('''
-      query GetAllDepartamentos {
-        departamentos {
-          departamentoID
-          nome
+  final departamentoID =
+      int.parse(request.url.queryParameters['departamentoID'] ?? '');
+
+  var hasuraResponse = await hasuraConnect.mutation('''
+      mutation DeleteDepartamento(\$departamentoID: Int!) {
+        delete_departamentos(where: { departamentoID: {_eq: \$departamentoID} }) {
+          affected_rows
         }
       }
-      ''');
+      ''', variables: {'departamentoID': departamentoID});
 
   return Response.ok(jsonEncode(hasuraResponse['data']));
 }

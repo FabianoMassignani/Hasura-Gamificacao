@@ -12,15 +12,22 @@ Future<Response> insertFuncionario(
   final hasuraConnect = injector.get<HasuraConnect>();
 
   final nome = request.url.queryParameters['nome'] ?? '';
-  final descricao = request.url.queryParameters['descricao'] ?? '';
+  final sobrenome = request.url.queryParameters['sobrenome'] ?? '';
+  final endereco = request.url.queryParameters['endereco'] ?? '';
+  final telefone = request.url.queryParameters['telefone'] ?? '';
 
   var hasuraResponse = await hasuraConnect.mutation('''
-      mutation CreateFuncionario(\$nome: String!, \$descricao: String!) {
-        insert_funcionarios(objects: { nome: \$nome, descricao: \$descricao }) {
+      mutation CreateFuncionario(\$nome: String!, \$sobrenome: String!, \$endereco: String!, \$telefone: String!) {
+        insert_funcionarios(objects: { nome: \$nome, sobrenome: \$sobrenome, endereco: \$endereco, telefone: \$telefone }) {
           affected_rows
         }
       }
-      ''', variables: {'nome': nome, 'descricao': descricao});
+      ''', variables: {
+    'nome': nome,
+    'sobrenome': sobrenome,
+    'endereco': endereco,
+    'telefone': telefone
+  });
 
   return Response.ok(jsonEncode(hasuraResponse['data']));
 }

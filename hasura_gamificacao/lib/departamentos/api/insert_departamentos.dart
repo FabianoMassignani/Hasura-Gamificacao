@@ -11,27 +11,16 @@ Future<Response> insertDepartamento(
 ) async {
   final hasuraConnect = injector.get<HasuraConnect>();
 
-  // Extract the parameters from the request URL
-  final Map<String, dynamic> params = request.url.queryParameters;
+  final nome = request.url.queryParameters['nome'] ?? '';
+  final descricao = request.url.queryParameters['descricao'] ?? '';
 
-  // Prepare the variables for the insert mutation
-  final variables = {
-    "nome": params[
-        'nome'], // Replace 'nome' with the actual parameter name for the department name
-  };
-
-  // Construct the mutation query
-  final mutation = '''
-    mutation InsertDepartamento(\$nome: String!) {
-      insert_departamentos(objects: {nome: \$nome}) {
-        affected_rows
+  var hasuraResponse = await hasuraConnect.mutation('''
+      mutation CreateDepartamento(\$nome: String!, \$descricao: String!) {
+        insert_departamentos(objects: { nome: \$nome, descricao: \$descricao }) {
+          affected_rows
+        }
       }
-    }
-  ''';
-
-  // Execute the mutation
-  var hasuraResponse =
-      await hasuraConnect.mutation(mutation, variables: variables);
+      ''', variables: {'nome': nome, 'descricao': descricao});
 
   return Response.ok(jsonEncode(hasuraResponse['data']));
 }
